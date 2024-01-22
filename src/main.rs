@@ -4,6 +4,7 @@ mod manachers_algo;
 mod median_sorted_arrays;
 mod palindromic_substring;
 mod two_sum;
+mod zigzag;
 
 fn main() {
     let _ = two_sum::main();

@@ -1,4 +1,3 @@
-use std::ops::Range;
 // get all pair ranges
 // expand pair ranges to 3 and 4 palindromes
 // identify palindrome reflections
