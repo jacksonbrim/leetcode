@@ -3,6 +3,7 @@ mod longest_substring;
 mod manachers_algo;
 mod median_sorted_arrays;
 mod palindromic_substring;
+mod reverse_int;
 mod two_sum;
 mod zigzag;
 
