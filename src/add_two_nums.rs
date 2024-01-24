@@ -1,47 +1,50 @@
 /// Given two non-empty linked lists representing two non-negative integers stored in reverse
 /// order. Each of their nodes contians a single digit. Add the two numbers return the sum as a
 /// linked list.
-pub fn add_two_numbers(
-    l1: Option<Box<ListNode>>,
-    l2: Option<Box<ListNode>>,
-) -> Option<Box<ListNode>> {
-    let mut l1 = l1;
-    let mut l2 = l2;
-    let mut head: Option<Box<ListNode>> = None;
-    let mut tail = &mut head;
-    let mut carry = 0;
-    while l1.is_some() || l2.is_some() || carry > 0 {
-        let mut sum = carry;
-        if let Some(node) = l1 {
-            sum += node.val;
-            l1 = node.next;
+struct Solution;
+impl Solution {
+    pub fn add_two_numbers(
+        l1: Option<Box<ListNode>>,
+        l2: Option<Box<ListNode>>,
+    ) -> Option<Box<ListNode>> {
+        let mut l1 = l1;
+        let mut l2 = l2;
+        let mut head: Option<Box<ListNode>> = None;
+        let mut tail = &mut head;
+        let mut carry = 0;
+        while l1.is_some() || l2.is_some() || carry > 0 {
+            let mut sum = carry;
+            if let Some(node) = l1 {
+                sum += node.val;
+                l1 = node.next;
+            }
+            if let Some(node) = l2 {
+                sum += node.val;
+                l2 = node.next;
+            }
+
+            carry = sum / 10;
+            let digit = sum % 10;
+            let new_node = Box::new(ListNode::new(digit));
+            *tail = Some(new_node);
+            tail = &mut tail.as_mut().unwrap().next;
         }
-        if let Some(node) = l2 {
-            sum += node.val;
-            l2 = node.next;
-        }
-
-        carry = sum / 10;
-        let digit = sum % 10;
-        let new_node = Box::new(ListNode::new(digit));
-        *tail = Some(new_node);
-        tail = &mut tail.as_mut().unwrap().next;
-    }
-    head
-}
-
-fn reverse_linked_list(list: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
-    let mut prev = None;
-    let mut curr = list;
-
-    while let Some(mut node) = curr {
-        let next = node.next.take();
-        node.next = prev;
-        prev = Some(node);
-        curr = next;
+        head
     }
 
-    prev
+    pub fn reverse_linked_list(list: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
+        let mut prev = None;
+        let mut curr = list;
+
+        while let Some(mut node) = curr {
+            let next = node.next.take();
+            node.next = prev;
+            prev = Some(node);
+            curr = next;
+        }
+
+        prev
+    }
 }
 
 // Definition for singly-linked list.
@@ -100,7 +103,7 @@ impl LinkedListNumber {
 
 #[cfg(test)]
 mod tests {
-    use crate::add_two_nums::*;
+    use super::*;
     #[test]
     fn add_nums_success() {
         // [2, 4, 3]
@@ -137,7 +140,7 @@ mod tests {
             })),
         }));
 
-        let added_nums = add_two_numbers(list1, list2);
+        let added_nums = Solution::add_two_numbers(list1, list2);
         // [2, 4, 3] + [5, 6, 4] -> [7, 0, 8]
         assert_eq!(added_nums, output);
     }
@@ -175,7 +178,7 @@ mod tests {
             })),
         }));
 
-        let added_nums = add_two_numbers(list1, list2);
+        let added_nums = Solution::add_two_numbers(list1, list2);
         // [5, 6] + [5, 4, 9] -> [0, 1, 0, 1]
         assert_eq!(added_nums, output);
     }
@@ -240,7 +243,7 @@ mod tests {
             })),
         }));
 
-        let added_nums = add_two_numbers(list1, list2);
+        let added_nums = Solution::add_two_numbers(list1, list2);
         // [9,9,9,9,9,9,9] + [9,9,9,9] -> [8,9,9,9,0,0,0,1]
         assert_eq!(added_nums, output);
     }
@@ -293,9 +296,9 @@ mod tests {
         }));
 
         // [2, 4, 3] -> [3, 4, 2]
-        let reversed_list1 = reverse_linked_list(list1);
+        let reversed_list1 = Solution::reverse_linked_list(list1);
         // [5, 6, 4] -> [4, 6, 5]
-        let reversed_list2 = reverse_linked_list(list2);
+        let reversed_list2 = Solution::reverse_linked_list(list2);
         assert_eq!(reversed_list1, output1);
         assert_eq!(reversed_list2, output2);
     }
