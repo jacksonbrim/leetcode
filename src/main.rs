@@ -2,6 +2,7 @@ mod add_two_nums;
 mod longest_substring;
 mod manachers_algo;
 mod median_sorted_arrays;
+mod most_water;
 mod palindrome_number;
 mod palindromic_substring;
 mod regex_matching;
@@ -11,5 +12,6 @@ mod two_sum;
 mod zigzag;
 
 fn main() {
+    env_logger::init();
     let _ = two_sum::main();
 }
