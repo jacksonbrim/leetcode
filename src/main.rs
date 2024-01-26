@@ -9,6 +9,7 @@ mod palindrome_number;
 mod palindromic_substring;
 mod regex_matching;
 mod reverse_int;
+mod roman_to_int;
 mod string_to_int;
 mod two_sum;
 mod zigzag;
