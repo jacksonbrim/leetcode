@@ -1,6 +1,7 @@
 mod add_two_nums;
 mod generate_test_data;
 mod int_to_roman;
+mod longest_common_prefix;
 mod longest_substring;
 mod manachers_algo;
 mod median_sorted_arrays;
@@ -11,6 +12,7 @@ mod regex_matching;
 mod reverse_int;
 mod roman_to_int;
 mod string_to_int;
+mod three_sum;
 mod two_sum;
 mod zigzag;
 

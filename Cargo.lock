@@ -239,6 +239,7 @@ dependencies = [
  "clap",
  "colored",
  "env_logger",
+ "lazy_static",
  "log",
  "tracing",
  "tracing-subscriber",
