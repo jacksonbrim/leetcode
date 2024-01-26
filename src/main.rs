@@ -1,4 +1,5 @@
 mod add_two_nums;
+mod combinatorics;
 mod generate_test_data;
 mod int_to_roman;
 mod longest_common_prefix;
