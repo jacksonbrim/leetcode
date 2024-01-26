@@ -12,15 +12,14 @@ impl Solution {
         let tens = num / 10;
         num = num % 10;
         match num {
-            1..=3 => res.push_str(&"I".repeat(num as usize)),
-            4 => res.push_str("VI"),
+            1..=3 => res.extend(repeat('I').take(num as usize)),
             4 => res.extend(['V', 'I'].iter()),
             5 => res.push('V'),
             6..=8 => {
-                res.push_str(&"I".repeat(num as usize - 5));
+                res.extend(repeat('I').take(num as usize - 5));
                 res.push('V');
             }
-            9 => res.push_str("XI"),
+            9 => res.extend(['X', 'I'].iter()),
             0 => {}
             _ => {
                 panic!(
@@ -30,14 +29,14 @@ impl Solution {
             }
         }
         match tens {
-            1..=3 => res.push_str(&"X".repeat(tens as usize)),
-            4 => res.push_str("LX"),
+            1..=3 => res.extend(repeat('X').take(tens as usize)),
+            4 => res.extend(['L', 'X'].iter()),
             5 => res.push('L'),
             6..=8 => {
-                res.push_str(&"X".repeat(tens as usize - 5));
+                res.extend(repeat('X').take(tens as usize - 5));
                 res.push('L');
             }
-            9 => res.push_str("CX"),
+            9 => res.extend(['C', 'X'].iter()),
             0 => {}
             _ => {
                 panic!(
@@ -48,14 +47,14 @@ impl Solution {
         }
         match hundreds {
             0 => {}
-            1..=3 => res.push_str(&"C".repeat(hundreds as usize)),
-            4 => res.push_str("DC"),
+            1..=3 => res.extend(repeat('C').take(hundreds as usize)),
+            4 => res.extend(['D', 'C'].iter()),
             5 => res.push('D'),
             6..=8 => {
-                res.push_str(&"C".repeat(hundreds as usize - 5));
+                res.extend(repeat('C').take(hundreds as usize - 5));
                 res.push('D');
             }
-            9 => res.push_str("MC"),
+            9 => res.extend(['M', 'C'].iter()),
             _ => {
                 panic!(
                     "Hundreds has impossible range: hundreds {:?} not in 0..=9",
@@ -63,8 +62,7 @@ impl Solution {
                 )
             }
         }
-
-        res.push_str(&"M".repeat(thousands as usize));
+        res.extend(repeat('M').take(thousands as usize));
 
         res.chars().rev().collect::<String>()
     }
