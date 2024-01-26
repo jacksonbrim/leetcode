@@ -1,0 +1,44 @@
+use std::iter::repeat;
+
+struct Solution;
+impl Solution {
+    pub fn int_to_roman(num: i32) -> String {
+        let mut num = num;
+        let mut res: String = String::with_capacity(5 * size_of(char));
+        if num >= 1000 {
+            let remainder = num % 1000;
+            let thousands = num / 1000;
+            res.extend(repeat('M').take(thousands as usize));
+            num = remainder;
+        }
+        if num >= 100 {
+            let remainder = num % 100;
+            let hundreds = num / 100;
+            match {
+                (hundreds in 0..4) => { res.extend(repeat('C').take(hundreds as usize))},
+                (hundreds == 4) => { res.extend(['D', 'C'].iter())},
+                (hundreds == 5) => { res.push('D')},
+                (hundreds in 5..9 )=> { res.extend(repeat('C').take(hundreds as usize - 1) res.push('D')},
+                (hundreds == 9) => { res.extend(['M', 'C'].iter())},
+                else { 
+                    panic!("Hundreds has impossible range: hundreds {:?} not in 0..=9", hundreds)
+                }
+                    
+            }
+            nums = remainder;
+        }
+        res.iter().rev().collect::<String>()
+    }
+}
+#[cfg(test)]
+mod tests
+    use super::*;
+    #[test]
+    fn single_digit_I_only_success() {
+        let num = 3;
+        let output = "III";
+        let res = int_to_roman(num);
+
+        assert_eq!(res, output);
+    }
+}

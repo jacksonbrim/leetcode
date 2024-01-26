@@ -1,4 +1,5 @@
 use colored::Colorize;
+use std::error::Error;
 use std::fmt;
 
 struct VecWrapper(Vec<i32>);
@@ -7,16 +8,13 @@ struct Highlight<'a> {
     vec_wrapper: &'a VecWrapper,
     highlight_start: Option<usize>,
     highlight_final: Option<usize>,
-    highlight_index: Option<usize>,
 }
-
 impl<'a> Highlight<'_> {
-    fn new(vec_wrapper: &'a VecWrapper, start: usize, fin: usize, index: usize) -> Highlight<'_> {
+    fn new(vec_wrapper: &'a VecWrapper, start: usize, fin: usize) -> Highlight<'_> {
         Highlight {
             vec_wrapper,
             highlight_start: Some(start),
             highlight_final: Some(fin),
-            highlight_index: Some(index),
         }
     }
 
@@ -25,9 +23,6 @@ impl<'a> Highlight<'_> {
     }
     fn fin(&mut self, fin: usize) {
         self.highlight_final = Some(fin);
-    }
-    fn index(&mut self, index: usize) {
-        self.highlight_index = Some(index);
     }
 }
 
@@ -49,12 +44,6 @@ impl<'a> fmt::Debug for Highlight<'a> {
                         return write!(f, "{}", format!("{}", v).red().bold());
                     }
                 }
-                if let Some(idx) = self.highlight_index {
-                    if count == idx {
-                        return write!(f, "{}", format!("{}", v).yellow().bold());
-                    }
-                }
-
                 write!(f, "{}", v)
             };
             what_to_write()?;
@@ -66,55 +55,26 @@ impl<'a> fmt::Debug for Highlight<'a> {
 struct Solution;
 impl Solution {
     pub fn max_area(height: Vec<i32>) -> i32 {
-        if height.len() < 2 {
+        let n = height.len();
+        if n < 2 {
             return 0;
         }
-        let a = VecWrapper(height.clone());
-        let mut start_line: (usize, i32) = (0, height[0]);
-        let mut final_line: (usize, i32) = (1, height[1]);
-        let mut area: i64 =
-            std::cmp::min(start_line.1, final_line.1) as i64 * (final_line.0 - start_line.0) as i64;
-        // iterate over heights, compare each item against starting line
-        // update starting line if the new_area is greater than the old area
-        for i in 2..height.len() {
-            let mut highlight = Highlight::new(&a, start_line.0, final_line.0, i);
-            if height.len() < 20 {
-                println!("{:?}", highlight);
+        let mut left: usize = 0;
+        let mut right: usize = n - 1;
+        let mut max_area = 0;
+        while left < right {
+            let current_area: i32 =
+                std::cmp::min(height[left], height[right]) * (right - left) as i32;
+            if current_area > max_area {
+                max_area = current_area;
             }
-            let new_line = (i, height[i]);
-            let new_area = Self::calculate_area(start_line, new_line);
-            if new_area > area || area == 0 {
-                if height.len() < 20 {
-                    println!("\t{:?}", "updating final_line");
-                }
-
-                final_line = new_line;
-                highlight.fin(final_line.0);
-                area = new_area;
-                // check all starting lines against new final line
-                // iterate over all heights leading up to the new final line
-                // check and see if there is a more optimal area
-                for j in 0..i {
-                    let current_start_line = (j, height[j]);
-                    let current_area = Self::calculate_area(current_start_line, final_line);
-                    if current_area > area {
-                        if height.len() < 20 {
-                            println!("\t{:?}", "updating starting line");
-                        }
-                        area = current_area;
-                        start_line = current_start_line;
-                        final_line = new_line;
-                        highlight.start(start_line.0);
-                        highlight.fin(final_line.0);
-                    }
-                }
+            if height[left] > height[right] {
+                right -= 1;
+            } else {
+                left += 1;
             }
         }
-
-        area as i32
-    }
-    pub fn calculate_area(start_line: (usize, i32), end_line: (usize, i32)) -> i64 {
-        std::cmp::min(start_line.1, end_line.1) as i64 * (end_line.0 - start_line.0) as i64
+        max_area
     }
 }
 

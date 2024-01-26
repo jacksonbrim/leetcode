@@ -1,5 +1,6 @@
 mod add_two_nums;
 mod generate_test_data;
+mod int_to_roman;
 mod longest_substring;
 mod manachers_algo;
 mod median_sorted_arrays;
@@ -16,6 +17,8 @@ use clap::{arg, command, Arg, ArgAction, ArgMatches, Command, Error};
 use generate_test_data::generate_number_list;
 use tracing::{info, level_filters::LevelFilter, Level};
 use tracing_subscriber::FmtSubscriber;
+
+struct Solution;
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let matches = Command::new("2023 Advent of Code")
@@ -87,7 +90,6 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         } else {
             let output_fp = generate_number_list(num, None)?;
             println!("Numbers written to file: {}", output_fp);
-            println!("Error: Please specify an output file using the --output flag.");
         }
     }
 
