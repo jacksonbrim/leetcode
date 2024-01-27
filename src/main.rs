@@ -2,6 +2,7 @@ mod add_two_nums;
 mod combinatorics;
 mod generate_test_data;
 mod int_to_roman;
+mod letter_combinations_phone_num;
 mod longest_common_prefix;
 mod longest_substring;
 mod manachers_algo;
@@ -14,6 +15,7 @@ mod reverse_int;
 mod roman_to_int;
 mod string_to_int;
 mod three_sum;
+mod three_sum_closest;
 mod two_sum;
 mod zigzag;
 
