@@ -1,5 +1,6 @@
 mod add_two_nums;
 mod combinatorics;
+mod four_sum;
 mod generate_test_data;
 mod int_to_roman;
 mod letter_combinations_phone_num;
@@ -11,6 +12,7 @@ mod most_water;
 mod palindrome_number;
 mod palindromic_substring;
 mod regex_matching;
+mod remove_nth_node_from_list;
 mod reverse_int;
 mod roman_to_int;
 mod string_to_int;
@@ -18,7 +20,6 @@ mod three_sum;
 mod three_sum_closest;
 mod two_sum;
 mod zigzag;
-
 use crate::combinatorics::*;
 use clap::{arg, command, Arg, ArgAction, ArgMatches, Command, Error};
 use generate_test_data::generate_number_list;
