@@ -26,6 +26,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     cli_utils::handle_combinatorics(&matches)?;
     cli_utils::handle_add_two_numbers(&matches)?;
+    cli_utils::handle_int_to_roman(&matches)?;
+    cli_utils::handle_find_median_from_sorted_arrays(&matches)?;
 
     Ok(())
 }

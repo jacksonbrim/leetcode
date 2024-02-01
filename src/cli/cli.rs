@@ -59,6 +59,19 @@ pub fn parse_args() -> ArgMatches {
                 .value_parser(clap::value_parser!(i32))
                 .help("Given two non-empty linked lists representing two non-negative integers stored in reverse order. Each of their nodes contians a single digit. Add the two numbers return the sum as a linked list."),
         )
-
+        .arg(
+            Arg::new("int-to-roman")
+                .long("int-to-roman")
+                .num_args(1)
+                .value_parser(clap::value_parser!(i32))
+                .help("Integer to Roman Numeral Conversion."),
+        )
+        .arg(
+            Arg::new("find-median-sorted-arrays")
+                .long("median-sorted-arrays")
+                .num_args(2)
+                .value_parser(clap::value_parser!(String))
+                .help("Find the median from two sorted arrays. Arrays must comma separated and surrounded in double quotes. (e.g. --median-sorted-arrays \"1,2,3,4,5\" \"6,7,8,9\""),
+        )
         .get_matches()
 }

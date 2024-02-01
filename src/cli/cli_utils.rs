@@ -1,6 +1,8 @@
 use crate::choose;
 use crate::generate_number_list;
 use crate::math_and_numbers::add_two_nums::Solution as AddNumsSolution;
+use crate::math_and_numbers::int_to_roman::Solution as IntToRoman;
+use crate::math_and_numbers::median_sorted_arrays::Solution as FindMedian;
 use crate::permutation;
 use num_format::{Locale, ToFormattedString};
 use tracing::info;
@@ -39,6 +41,64 @@ pub fn handle_add_two_numbers(matches: &ArgMatches) -> Result<(), Box<dyn std::e
     }
     Ok(())
 }
+pub fn handle_find_median_from_sorted_arrays(
+    matches: &ArgMatches,
+) -> Result<(), Box<dyn std::error::Error>> {
+    if let Some(mut values) = matches.get_many::<String>("find-median-sorted-arrays") {
+        let array1 = values.next().unwrap();
+        let array2 = values.next().unwrap();
+        let mut list1: Vec<i32> = array1
+            .split(',')
+            .filter_map(|c| c.trim().parse::<i32>().ok())
+            .collect::<Vec<i32>>();
+        let mut list2: Vec<i32> = array2
+            .split(',')
+            .filter_map(|c| c.trim().parse::<i32>().ok())
+            .collect::<Vec<i32>>();
+
+        list1.sort();
+        list2.sort();
+
+        let list1_str = format!(
+            "[{}]",
+            list1
+                .iter()
+                .clone()
+                .map(|i| i.to_string())
+                .collect::<Vec<String>>()
+                .join(", ")
+        );
+        let list2_str = format!(
+            "[{}]",
+            list2
+                .clone()
+                .iter()
+                .map(|i| i.to_string())
+                .collect::<Vec<String>>()
+                .join(", ")
+        );
+
+        let res = FindMedian::find_median_sorted_arrays(list1, list2);
+        info!(
+            "median_sorted_arrays: arr1: {}, arr2: {}",
+            list1_str, list2_str
+        );
+        println!("{}", res);
+    }
+    Ok(())
+}
+
+pub fn handle_int_to_roman(matches: &ArgMatches) -> Result<(), Box<dyn std::error::Error>> {
+    let num = *matches.get_one::<i32>("int-to-roman").unwrap_or(&0);
+
+    if num > 0 {
+        let res = IntToRoman::int_to_roman(num);
+        println!("{}", res);
+    }
+
+    Ok(())
+}
+
 pub fn handle_generate_numbers(matches: &ArgMatches) -> Result<(), Box<dyn std::error::Error>> {
     let num = *matches.get_one::<i64>("generate-numbers").unwrap_or(&0);
     let output = matches.get_one::<String>("output");
