@@ -71,7 +71,7 @@ pub fn parse_args() -> ArgMatches {
                 .long("median-sorted-arrays")
                 .num_args(2)
                 .value_parser(clap::value_parser!(String))
-                .help("Find the median from two sorted arrays. Arrays must comma separated and surrounded in double quotes. (e.g. --median-sorted-arrays \"1,2,3,4,5\" \"6,7,8,9\""),
+                .help("Find the median from two sorted arrays. Arrays must comma separated and surrounded in double quotes. (e.g. \"1,2,3,4,5\" \"6,7,8,9\""),
         )
         .get_matches()
 }
