@@ -9,15 +9,9 @@ pub fn parse_args() -> ArgMatches {
             Arg::new("generate-numbers")
                 .short('g')
                 .long("generate-numbers")
-                .action(clap::ArgAction::SetTrue)
-                .help("Generate numbers and output to file (if specified with --output)"),
-        )
-        .arg(
-            Arg::new("num")
-                .short('n')
-                .long("num")
+                .num_args(1)
                 .value_parser(clap::value_parser!(i64))
-                .help("The number of elements to generate"),
+                .help("Generate numbers and output to file (if specified with --output)"),
         )
         .arg(
             Arg::new("output")
@@ -46,7 +40,7 @@ pub fn parse_args() -> ArgMatches {
                 .num_args(2)
                 .value_parser(clap::value_parser!(u128))
                 .required(false)
-                .help("Calculates combinations, requires two numbers where n > k and both > 0"),
+                .help("Calculates combinations, requires two numbers where n > k and both > 0. In a combinatorics, n choose k represents a combination of n things taken k at a time without repetition"),
         )
         .arg(
             Arg::new("permutation")
@@ -57,5 +51,14 @@ pub fn parse_args() -> ArgMatches {
                 .required(false)
                 .help("Calculates permutations, requires two numbers where n > k and both > 0"),
         )
+        .arg(
+            Arg::new("add-two-numbers")
+                .long("add-two-numbers")
+                .value_names(&["num1", "num2"])
+                .num_args(2)
+                .value_parser(clap::value_parser!(i32))
+                .help("Given two non-empty linked lists representing two non-negative integers stored in reverse order. Each of their nodes contians a single digit. Add the two numbers return the sum as a linked list."),
+        )
+
         .get_matches()
 }

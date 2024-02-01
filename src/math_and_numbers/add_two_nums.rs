@@ -1,7 +1,7 @@
 /// Given two non-empty linked lists representing two non-negative integers stored in reverse
 /// order. Each of their nodes contians a single digit. Add the two numbers return the sum as a
 /// linked list.
-struct Solution;
+pub struct Solution;
 impl Solution {
     pub fn add_two_numbers(
         l1: Option<Box<ListNode>>,
@@ -44,6 +44,29 @@ impl Solution {
         }
 
         prev
+    }
+    pub fn create_list_from_vec(vec: Vec<i32>) -> Option<Box<ListNode>> {
+        let mut head = None;
+        let mut current = &mut head;
+
+        for &val in vec.iter().rev() {
+            let mut new_node = Box::new(ListNode::new(val));
+            new_node.next = current.take();
+            *current = Some(new_node);
+        }
+
+        head
+    }
+    pub fn format_list(list: Option<Box<ListNode>>) -> String {
+        let mut current = &list;
+        let mut elements = Vec::new();
+
+        while let Some(node) = current {
+            elements.push(node.val.to_string());
+            current = &node.next;
+        }
+
+        format!("[{}]", elements.join(", "))
     }
 }
 
