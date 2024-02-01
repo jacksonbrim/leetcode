@@ -1,4 +1,4 @@
-# Rust LeetCode Solutions CLI
+# Rust LeetCode Solutions CLI ***WIP!***
 ## Introduction
 Welcome to the Rust LeetCode Solutions CLI! This command-line interface (CLI) application, built with Rust and Clap, offers a convenient way to run and test a variety of LeetCode problem solutions. The application encompasses solutions from various categories such as data structures, dynamic programming, mathematical problems, and string manipulations.
 
