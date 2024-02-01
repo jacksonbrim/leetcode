@@ -12,7 +12,10 @@ use generate_test_data::generate_number_list;
 use num_format::{Locale, ToFormattedString};
 use tracing::{info, level_filters::LevelFilter, Level};
 
-use crate::cli::cli::parse_args;
+use crate::cli::cli::{
+    parse_args,
+    Combinatorics::{Choose, Permutation},
+};
 use crate::cli::cli_utils;
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let matches = parse_args();
@@ -20,15 +23,30 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let verbosity = matches.get_one::<u8>("verbose").unwrap_or(&0);
     setup_logging(*verbosity);
 
-    if let Some(_) = matches.get_one::<bool>("generate-numbers") {
-        cli_utils::handle_generate_numbers(&matches)?;
+    match matches.subcommand() {
+        Some(("generate-numbers", sub_m)) => {
+            cli_utils::handle_generate_numbers(&sub_m)?;
+        }
+        Some(("choose", sub_m)) => {
+            cli_utils::handle_combinatorics(Choose, &sub_m)?;
+        }
+        Some(("permutation", sub_m)) => {
+            cli_utils::handle_combinatorics(Permutation, &sub_m)?;
+        }
+        Some(("add-two-numbers", sub_m)) => {
+            cli_utils::handle_add_two_numbers(sub_m)?;
+        }
+        Some(("int-to-roman", sub_m)) => {
+            cli_utils::handle_int_to_roman(sub_m)?;
+        }
+        Some(("find-median-of-sorted-arrays", sub_m)) => {
+            cli_utils::handle_find_median_from_sorted_arrays(sub_m)?;
+        }
+        Some(("most-water", sub_m)) => {
+            cli_utils::handle_most_water(sub_m)?;
+        }
+        _ => unreachable!("subcommand required"),
     }
-
-    cli_utils::handle_combinatorics(&matches)?;
-    cli_utils::handle_add_two_numbers(&matches)?;
-    cli_utils::handle_int_to_roman(&matches)?;
-    cli_utils::handle_find_median_from_sorted_arrays(&matches)?;
-    cli_utils::handle_most_water(&matches)?;
 
     Ok(())
 }
