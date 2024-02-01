@@ -73,5 +73,12 @@ pub fn parse_args() -> ArgMatches {
                 .value_parser(clap::value_parser!(String))
                 .help("Find the median from two sorted arrays. Arrays must comma separated and surrounded in double quotes. (e.g. \"1,2,3,4,5\" \"6,7,8,9\""),
         )
+        .arg(
+            Arg::new("max-area")
+                .long("max-area")
+                .num_args(1)
+                .value_parser(clap::value_parser!(String))
+                .help("Find the maximum area between any two heights from a list of heights. List must comma separated and surrounded in double quotes. (e.g. \"1,2,3,4,5\" \"6,7,8,9\""),
+        )
         .get_matches()
 }

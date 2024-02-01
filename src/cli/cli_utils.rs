@@ -3,6 +3,7 @@ use crate::generate_number_list;
 use crate::math_and_numbers::add_two_nums::Solution as AddNumsSolution;
 use crate::math_and_numbers::int_to_roman::Solution as IntToRoman;
 use crate::math_and_numbers::median_sorted_arrays::Solution as FindMedian;
+use crate::math_and_numbers::most_water::Solution as MostWater;
 use crate::permutation;
 use num_format::{Locale, ToFormattedString};
 use tracing::info;
@@ -85,6 +86,21 @@ pub fn handle_find_median_from_sorted_arrays(
         );
         println!("{}", res);
     }
+    Ok(())
+}
+
+pub fn handle_most_water(matches: &ArgMatches) -> Result<(), Box<dyn std::error::Error>> {
+    let vec_string = matches.get_one::<String>("max-area");
+    if let Some(water_string) = vec_string {
+        let heights: Vec<i32> = water_string
+            .split(',')
+            .filter_map(|c| c.trim().parse::<i32>().ok())
+            .collect::<Vec<i32>>();
+
+        let res = MostWater::max_area(heights);
+        println!("{}", res);
+    }
+
     Ok(())
 }
 
