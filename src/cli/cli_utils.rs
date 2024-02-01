@@ -1,4 +1,5 @@
 use crate::choose;
+use crate::cli::cli;
 use crate::cli::cli::Combinatorics;
 use crate::generate_number_list;
 use crate::math_and_numbers::add_two_nums::Solution as AddNumsSolution;
@@ -6,6 +7,9 @@ use crate::math_and_numbers::int_to_roman::Solution as IntToRoman;
 use crate::math_and_numbers::median_sorted_arrays::Solution as FindMedian;
 use crate::math_and_numbers::most_water::Solution as MostWater;
 use crate::permutation;
+
+use ::std::io;
+use clap_complete::{generate, shells::Shell};
 use num_format::{Locale, ToFormattedString};
 use tracing::info;
 
@@ -159,6 +163,26 @@ pub fn handle_combinatorics(
                 );
             }
         }
+    }
+    Ok(())
+}
+
+pub fn handle_shell_completions(matches: &ArgMatches) -> Result<(), Box<dyn std::error::Error>> {
+    let shell_type = matches.get_one::<String>("shell").unwrap().to_lowercase();
+    let mut cli: clap::Command = cli::build_cli();
+    let program_name = cli.get_name().to_string();
+    println!("program_name: {:?}", &program_name);
+    println!("cli: {:?}", &cli);
+    println!("shell_type: {:?}", &shell_type);
+    match shell_type.as_str() {
+        "bash" => generate(Shell::Bash, &mut cli, program_name, &mut io::stdout()),
+        "elvish" => generate(Shell::Elvish, &mut cli, program_name, &mut io::stdout()),
+        "fish" => generate(Shell::Fish, &mut cli, program_name, &mut io::stdout()),
+        "powershell" | "pwsh" => {
+            generate(Shell::PowerShell, &mut cli, program_name, &mut io::stdout())
+        }
+        "zsh" => generate(Shell::Zsh, &mut cli, program_name, &mut io::stdout()),
+        _ => unreachable!(),
     }
     Ok(())
 }

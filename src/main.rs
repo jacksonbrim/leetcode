@@ -45,6 +45,10 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         Some(("most-water", sub_m)) => {
             cli_utils::handle_most_water(sub_m)?;
         }
+        Some(("generate-completions", sub_m)) => {
+            cli_utils::handle_shell_completions(sub_m)?;
+        }
+
         _ => unreachable!("subcommand required"),
     }
 

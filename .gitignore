@@ -1,2 +1,4 @@
 /target
-./update_mods.sh
+update_mods.sh
+/test_input/**
+

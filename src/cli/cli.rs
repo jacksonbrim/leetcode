@@ -5,11 +5,24 @@ pub enum Combinatorics {
 }
 
 pub fn parse_args() -> ArgMatches {
+    build_cli().get_matches()
+}
+pub fn build_cli() -> Command {
     Command::new("Leetcode Solutions")
         .author("Jackson Brim")
         .version("0.1.0")
         .about("A program for running leetcode solutions")
         .subcommands([
+            Command::new("generate-completions")
+                .about("Generate shell completions")
+                .arg(
+                    Arg::new("shell")
+                        .index(1)
+                        .num_args(1)
+                        .required(true)
+                        .value_parser(["bash", "elvish", "fish", "powershell", "pwsh", "zsh"])
+                        .help("Enter a shell to generate completions for.")
+                ),
             Command::new("generate-numbers")
                 .about("Generate numbers and output to file")
                 .arg(
@@ -115,5 +128,4 @@ pub fn parse_args() -> ArgMatches {
                         .action(clap::ArgAction::Count)
                         .help("Set the verbosit level. OFF (default), -v => INFO, -vv => DEBUG, -vvv => TRACE"),
         )
-        .get_matches()
 }
