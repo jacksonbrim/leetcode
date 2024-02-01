@@ -3,6 +3,7 @@ use crate::generate_number_list;
 use crate::math_and_numbers::add_two_nums::Solution as AddNumsSolution;
 use crate::permutation;
 use num_format::{Locale, ToFormattedString};
+use tracing::info;
 
 use clap::ArgMatches;
 pub fn parse_list_from_str(s: &str) -> Vec<i32> {
@@ -33,7 +34,7 @@ pub fn handle_add_two_numbers(matches: &ArgMatches) -> Result<(), Box<dyn std::e
         let ll2_str = AddNumsSolution::format_list(linked_list2);
         let res_str = AddNumsSolution::format_list(res_list);
 
-        println!("Add Two Numbers: {} + {} == {}", ll1_str, ll2_str, res_str);
+        info!("Add Two Numbers: {} + {} == {}", ll1_str, ll2_str, res_str);
         println!("{}", res);
     }
     Ok(())

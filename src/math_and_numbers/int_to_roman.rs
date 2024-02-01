@@ -1,6 +1,6 @@
 use std::iter::repeat;
 
-struct Solution;
+pub struct Solution;
 impl Solution {
     // first attempt second highest perf, beats 100%, 0ms runtime, 2.10MB Memory.
     // Initially, I processed it in reverse and then reversed the string aftwerwards. It had the
