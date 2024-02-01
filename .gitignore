@@ -1,4 +1,5 @@
 /target
 update_mods.sh
 /test_input/**
+*.txt
 
