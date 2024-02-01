@@ -42,6 +42,7 @@ Here is a list of commands currently available in the CLI application, along wit
 * Usage: `cargo run -- max-area` <HEIGHTS> where <HEIGHTS> is the list of heights.
 
 ### Features
+* **Shell Completion**
 * **Wide Range of Solutions**: Solutions to various LeetCode problems including popular ones like "Two Sum", "Median of Two Sorted Arrays", "Longest Substring Without Repeating Characters", and many more.
 * **Test Data Generation**: Ability to generate test data for problems, making it easy to try out different scenarios and inputs.
 * **Dynamic Programming & Math Solutions**: Includes complex problems solved using dynamic programming and various mathematical approaches.
