@@ -28,11 +28,13 @@ pub fn handle_add_two_numbers(matches: &ArgMatches) -> Result<(), Box<dyn std::e
         let linked_list1 = AddNumsSolution::create_list_from_vec(list1);
         let linked_list2 = AddNumsSolution::create_list_from_vec(list2);
         let res_list = AddNumsSolution::add_two_numbers(linked_list1.clone(), linked_list2.clone());
+        let res = AddNumsSolution::list_to_int(res_list.clone());
         let ll1_str = AddNumsSolution::format_list(linked_list1);
         let ll2_str = AddNumsSolution::format_list(linked_list2);
         let res_str = AddNumsSolution::format_list(res_list);
 
         println!("Add Two Numbers: {} + {} == {}", ll1_str, ll2_str, res_str);
+        println!("{}", res);
     }
     Ok(())
 }

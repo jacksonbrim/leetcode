@@ -57,6 +57,27 @@ impl Solution {
 
         head
     }
+    pub fn list_to_int(list: Option<Box<ListNode>>) -> i32 {
+        let mut current = &list;
+        let mut elements = Vec::new();
+
+        while let Some(node) = current {
+            elements.push(node.val.to_string());
+            current = &node.next;
+        }
+        let digits: Vec<i32> = elements.iter().map(|s| s.parse::<i32>().unwrap()).collect();
+
+        let mut res: i32 = 0;
+        for (i, &digit) in digits.iter().enumerate() {
+            // Calculate the exponent part
+            // The pow method requires a u32, so we cast i to u32
+            let exponent = digits.len() as u32 - i as u32 - 1;
+            res += digit * 10i32.pow(exponent);
+        }
+
+        res
+    }
+
     pub fn format_list(list: Option<Box<ListNode>>) -> String {
         let mut current = &list;
         let mut elements = Vec::new();
