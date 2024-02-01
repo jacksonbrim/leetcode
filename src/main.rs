@@ -45,6 +45,9 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         Some(("most-water", sub_m)) => {
             cli_utils::handle_most_water(sub_m)?;
         }
+        Some(("valid-parenthesis", sub_m)) => {
+            cli_utils::handle_valid_parenthesis(sub_m)?;
+        }
         Some(("generate-completions", sub_m)) => {
             cli_utils::handle_shell_completions(sub_m)?;
         }

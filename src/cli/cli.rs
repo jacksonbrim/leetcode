@@ -13,16 +13,6 @@ pub fn build_cli() -> Command {
         .version("0.1.0")
         .about("A program for running leetcode solutions")
         .subcommands([
-            Command::new("generate-completions")
-                .about("Generate shell completions")
-                .arg(
-                    Arg::new("shell")
-                        .index(1)
-                        .num_args(1)
-                        .required(true)
-                        .value_parser(["bash", "elvish", "fish", "powershell", "pwsh", "zsh"])
-                        .help("Enter a shell to generate completions for.")
-                ),
             Command::new("generate-numbers")
                 .about("Generate numbers and output to file")
                 .arg(
@@ -119,7 +109,27 @@ pub fn build_cli() -> Command {
                         .num_args(1)
                         .value_parser(clap::value_parser!(String))
                         .help("Array must comma separated and surrounded in double quotes. (e.g. \"1,2,3,4,5\" \"6,7,8,9\"")
-                    )
+                    ),
+            Command::new("valid-parenthesis")
+                .about("Determine whether a string is valid, such that it only has matching open and closed brackets.")
+                .arg(
+                    Arg::new("brackets")
+                        .index(1)
+                        .num_args(1)
+                        .value_parser(clap::value_parser!(String))
+                        .help("Enter a string of open and closed brackets. (e.g. \"(){}{{}}({[[]]})\")")
+                    ),
+            Command::new("generate-completions")
+                .about("Generate shell completions")
+                .arg(
+                    Arg::new("shell")
+                        .index(1)
+                        .num_args(1)
+                        .required(true)
+                        .value_parser(["bash", "elvish", "fish", "powershell", "pwsh", "zsh"])
+                        .help("Enter a shell to generate completions for.")
+                ),
+
                     ])
             .arg(
                 Arg::new("verbose")

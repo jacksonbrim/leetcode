@@ -7,6 +7,7 @@ use crate::math_and_numbers::int_to_roman::Solution as IntToRoman;
 use crate::math_and_numbers::median_sorted_arrays::Solution as FindMedian;
 use crate::math_and_numbers::most_water::Solution as MostWater;
 use crate::permutation;
+use crate::string_manipulation::valid_paranthesis::Solution as Validparenthesis;
 
 use ::std::io;
 use clap_complete::{generate, shells::Shell};
@@ -164,6 +165,14 @@ pub fn handle_combinatorics(
             }
         }
     }
+    Ok(())
+}
+pub fn handle_valid_parenthesis(matches: &ArgMatches) -> Result<(), Box<dyn std::error::Error>> {
+    let brackets = matches.get_one::<String>("brackets").unwrap();
+    info!("Valid parenthesis - brackets: {}", &brackets);
+    let res = Validparenthesis::is_valid(brackets.clone());
+    info!("Valid parenthesis: {} -> {}", &brackets, res);
+    println!("{}", res);
     Ok(())
 }
 
