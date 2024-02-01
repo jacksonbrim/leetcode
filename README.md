@@ -6,50 +6,40 @@ Welcome to the Rust LeetCode Solutions CLI! This command-line interface (CLI) ap
 Here is a list of commands currently available in the CLI application, along with their descriptions:
 
 1.**Generate Numbers**
-Command: --generate-numbers or -g
-Description: Generate numbers and output to file (if specified with --output).
-Usage: --generate-numbers <NUM> where <NUM> is the number of elements to generate.
 
 2.**Output File Specification**
-Command: --output or -o
-Description: Specify the output file for generated numbers. Currently
-only available for the --generate-numbers command.
-Usage: -g --output <FILE_PATH> where <FILE_PATH> is the path to the output file.
 
 3.**Verbosity Level**
-Command: --verbose or -v
-Description: Use the -v flag to set the verbosity level. Levels are OFF (default), -v for INFO, -vv for DEBUG, -vvv for TRACE.
-Usage: --verbose followed by -v, -vv, or -vvv.
 
 4.**Combinations (Choose)**
-Command: --choose
-Description: Calculates combinations, requires two numbers where n > k and both > 0. In combinatorics, n choose k represents a combination of n things taken k at a time without repetition.
-Usage: --choose <n> <k> where <n> and <k> are the numbers for combination.
+* Command: --choose
+* Description: Calculates combinations, requires two numbers where n > k and both > 0. In combinatorics, n choose k represents a combination of n things taken k at a time without repetition.
+* Usage: --choose <n> <k> where <n> and <k> are the numbers for combination.
 
 5.**Permutations**
-Command: --permutation
-Description: Calculates permutations, requires two numbers where n > k and both > 0.
-Usage: --permutation <n> <k> where <n> and <k> are the numbers for permutation.
+* Command: --permutation
+* Description: Calculates permutations, requires two numbers where n > k and both > 0.
+* Usage: --permutation <n> <k> where <n> and <k> are the numbers for permutation.
 
 6.**Add Two Numbers**
-Command: --add-two-numbers
-Description: Given two non-empty linked lists representing two non-negative integers stored in reverse order. Each of their nodes contains a single digit. Add the two numbers and return the sum as a linked list.
-Usage: --add-two-numbers <num1> <num2> where <num1> and <num2> are the numbers.
+* Command: --add-two-numbers
+* Description: Given two non-empty linked lists representing two non-negative integers stored in reverse order. Each of their nodes contains a single digit. Add the two numbers and return the sum as a linked list.
+* Usage: --add-two-numbers <num1> <num2> where <num1> and <num2> are the numbers.
 
 7.**Integer to Roman Numeral Conversion**
-Command: --int-to-roman
-Description: Integer to Roman Numeral Conversion.
-Usage: --int-to-roman <NUMBER> where <NUMBER> is the integer to convert.
+* Command: --int-to-roman
+* Description: Integer to Roman Numeral Conversion.
+* Usage: --int-to-roman <NUMBER> where <NUMBER> is the integer to convert.
 
 8.**Find Median of Sorted Arrays**
-Command: --median-sorted-arrays
-Description: Find the median from two sorted arrays. Arrays must be comma-separated and surrounded in double quotes (e.g., "1,2,3,4,5" "6,7,8,9").
-Usage: --median-sorted-arrays <ARRAY1> <ARRAY2> where <ARRAY1> and <ARRAY2> are the arrays.
+* Command: --median-sorted-arrays
+* Description: Find the median from two sorted arrays. Arrays must be comma-separated and surrounded in double quotes (e.g., "1,2,3,4,5" "6,7,8,9").
+* Usage: --median-sorted-arrays <ARRAY1> <ARRAY2> where <ARRAY1> and <ARRAY2> are the arrays.
 
 9.**Maximum Area**
-Command: --max-area
-Description: Find the maximum area between any two heights from a list of heights. The list must be comma-separated and surrounded in double quotes (e.g., "1,2,3,4,5" "6,7,8,9").
-Usage: --max-area <HEIGHTS> where <HEIGHTS> is the list of heights.
+* Command: --max-area
+* Description: Find the maximum area between any two heights from a list of heights. The list must be comma-separated and surrounded in double quotes (e.g., "1,2,3,4,5" "6,7,8,9").
+* Usage: --max-area <HEIGHTS> where <HEIGHTS> is the list of heights.
 
 ### Features
 * **Wide Range of Solutions**: Solutions to various LeetCode problems including popular ones like "Two Sum", "Median of Two Sorted Arrays", "Longest Substring Without Repeating Characters", and many more.
