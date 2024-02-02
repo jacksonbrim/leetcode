@@ -1,36 +1,30 @@
 use crate::linked_list_utils::*;
 pub struct Solution;
 impl Solution {
-    // First intuition, 1ms runtims, beats 72.79% of Rust users, 2.08MB Memory beating 81.25%
+    // 0ms, 100%, 2.06MB beats 81.25% - This is all over the place on leetcode.com
     pub fn merge_two_lists(
         list1: Option<Box<ListNode>>,
         list2: Option<Box<ListNode>>,
     ) -> Option<Box<ListNode>> {
-        Self::dfs(&list1, &list2)
+        Self::dfs(list1, list2)
     }
     // depth first search
-    fn dfs(list1: &Option<Box<ListNode>>, list2: &Option<Box<ListNode>>) -> Option<Box<ListNode>> {
+    fn dfs(list1: Option<Box<ListNode>>, list2: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
         match (list1, list2) {
-            (Some(node1), Some(node2)) if node1.val < node2.val => {
-                let mut new_node = ListNode::new(node1.val);
-                new_node.next = Self::dfs(&node1.next, &list2);
-                Some(Box::new(new_node))
-            }
-            (Some(_node1), Some(node2)) => {
-                let mut new_node = ListNode::new(node2.val);
-                new_node.next = Self::dfs(&list1, &node2.next);
-                Some(Box::new(new_node))
-            }
-            (Some(node1), None) => {
-                let mut new_node = ListNode::new(node1.val);
-                new_node.next = Self::dfs(&node1.next, &list2);
-                Some(Box::new(new_node))
-            }
-            (None, Some(node2)) => {
-                let mut new_node = ListNode::new(node2.val);
-                new_node.next = Self::dfs(&list1, &node2.next);
-                Some(Box::new(new_node))
-            }
+            (Some(node1), Some(node2)) => match node1.val <= node2.val {
+                true => {
+                    let mut new_node = ListNode::new(node1.val);
+                    new_node.next = Self::dfs(node1.next, Some(node2));
+                    Some(Box::new(new_node))
+                }
+                false => {
+                    let mut new_node = ListNode::new(node2.val);
+                    new_node.next = Self::dfs(node2.next, Some(node1));
+                    Some(Box::new(new_node))
+                }
+            },
+            (Some(node1), None) => Some(node1),
+            (None, Some(node2)) => Some(node2),
             _ => None, // Both lists are empty
         }
     }
