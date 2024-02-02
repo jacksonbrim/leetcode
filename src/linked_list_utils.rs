@@ -1,10 +1,21 @@
+use std::fmt;
 // Definition for singly-linked list.
 #[derive(PartialEq, Eq, Clone, Debug, PartialOrd)]
 pub struct ListNode {
     pub val: i32,
     pub next: Option<Box<ListNode>>,
 }
-
+impl fmt::Display for ListNode {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "[ {}", self.val)?;
+        let mut current = &self.next;
+        while let Some(node) = current {
+            write!(f, " -> {}", node.val)?;
+            current = &node.next;
+        }
+        write!(f, " -> None ]")
+    }
+}
 impl ListNode {
     #[inline]
     pub fn new(val: i32) -> Self {

@@ -43,6 +43,10 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         Some(("find-median-of-sorted-arrays", sub_m)) => {
             cli_utils::handle_find_median_from_sorted_arrays(sub_m)?;
         }
+        Some(("merge-two-sorted-arrays", sub_m)) => {
+            cli_utils::handle_merge_two_sorted_lists(sub_m)?;
+        }
+
         Some(("most-water", sub_m)) => {
             cli_utils::handle_most_water(sub_m)?;
         }

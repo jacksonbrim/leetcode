@@ -101,6 +101,18 @@ pub fn build_cli() -> Command {
                     .value_parser(clap::value_parser!(String))
                     .help("Find the median from two sorted arrays. Arrays must comma separated and surrounded in double quotes. (e.g. \"1,2,3,4,5\" \"6,7,8,9\""),
                 ),
+            Command::new("merge-two-sorted-arrays")
+                .about("Merge two sorted lists into a single sorted lists.")
+                .long_about("Takes 2 sorted arrays and converts them into linked lists. Then it merges them into a single linked list.")
+                .arg(
+                    Arg::new("sorted-arrays")
+                    .index(1)
+                    .num_args(2)
+                    .required(true)
+                    .value_parser(clap::value_parser!(String))
+                    .help("Merge two sorted arrays into a single sorted array. Arrays must comma separated and surrounded in double quotes. (e.g. \"1,2,3,4,5\" \"6,7,8,9\""),
+                ),
+
             Command::new("max-area")
                 .about("Find the maximum area between any two heights from a list of heights. List must comma separated and surrounded in double quotes. (e.g. \"1,2,3,4,5\" \"6,7,8,9\"")
                 .arg(

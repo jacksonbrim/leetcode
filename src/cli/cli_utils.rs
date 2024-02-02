@@ -6,6 +6,7 @@ use crate::linked_list_utils::*;
 use crate::math_and_numbers::add_two_nums::Solution as AddNumsSolution;
 use crate::math_and_numbers::int_to_roman::Solution as IntToRoman;
 use crate::math_and_numbers::median_sorted_arrays::Solution as FindMedian;
+use crate::math_and_numbers::merge_two_sorted_lists::Solution as MergeSortedLists;
 use crate::math_and_numbers::most_water::Solution as MostWater;
 use crate::permutation;
 use crate::string_manipulation::valid_paranthesis::Solution as Validparenthesis;
@@ -13,6 +14,7 @@ use crate::string_manipulation::valid_paranthesis::Solution as Validparenthesis;
 use ::std::io;
 use clap_complete::{generate, shells::Shell};
 use num_format::{Locale, ToFormattedString};
+use std::collections::linked_list;
 use tracing::info;
 
 use clap::ArgMatches;
@@ -174,6 +176,54 @@ pub fn handle_valid_parenthesis(matches: &ArgMatches) -> Result<(), Box<dyn std:
     let res = Validparenthesis::is_valid(brackets.clone());
     info!("Valid parenthesis: {} -> {}", &brackets, res);
     println!("{}", res);
+    Ok(())
+}
+pub fn handle_merge_two_sorted_lists(
+    matches: &ArgMatches,
+) -> Result<(), Box<dyn std::error::Error>> {
+    let mut sorted_lists = matches.get_many::<String>("sorted-arrays").unwrap();
+    let array1: String = sorted_lists.next().unwrap().to_string();
+    let array2: String = sorted_lists.next().unwrap().to_string();
+    let mut list1: Vec<i32> = array1
+        .split(',')
+        .filter_map(|c| c.trim().parse::<i32>().ok())
+        .collect::<Vec<i32>>();
+    let mut list2: Vec<i32> = array2
+        .split(',')
+        .filter_map(|c| c.trim().parse::<i32>().ok())
+        .collect::<Vec<i32>>();
+
+    list1.sort();
+    list2.sort();
+
+    let list1_str = format!(
+        "[{}]",
+        list1
+            .iter()
+            .clone()
+            .map(|i| i.to_string())
+            .collect::<Vec<String>>()
+            .join(", ")
+    );
+    let list2_str = format!(
+        "[{}]",
+        list2
+            .clone()
+            .iter()
+            .map(|i| i.to_string())
+            .collect::<Vec<String>>()
+            .join(", ")
+    );
+    info!("sorted arrays: arr1: {}, arr2: {}", list1_str, list2_str);
+    let linked_list1 = ListNode::from_vec(&list1);
+    info!("arr1 converted to linked list: {}", &linked_list1);
+    let linked_list2 = ListNode::from_vec(&list2);
+    info!("arr2 converted to linked list: {}", &linked_list2);
+
+    let linked_list1 = Some(Box::new(ListNode::from_vec(&list1)));
+    let linked_list2 = Some(Box::new(ListNode::from_vec(&list2)));
+    let res = MergeSortedLists::merge_two_lists(linked_list1, linked_list2);
+    println!("{}", res.unwrap());
     Ok(())
 }
 
