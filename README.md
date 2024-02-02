@@ -36,10 +36,20 @@ Here is a list of commands currently available in the CLI application, along wit
 * Description: Find the median from two sorted arrays. Arrays must be comma-separated and surrounded in double quotes (e.g., "1,2,3,4,5" "6,7,8,9").
 * Usage: `cargo run -- median-sorted-arrays <ARRAY1> <ARRAY2>` where <ARRAY1> and <ARRAY2> are the arrays.
 
-9.**Maximum Area**
+9.**Merge Two Sorted Linked List**
+* Subcommand: merge-two-sorted-arrays
+* Description: Merge two sorted arrays. Arrays must be comma-separated and surrounded in double quotes (e.g., "1,2,3,4,5" "6,7,8,9").
+* Usage: `cargo run -- merge-two-sorted-arrays <ARRAY1> <ARRAY2>` where <ARRAY1> and <ARRAY2> are the arrays.
+
+10.**Maximum Area**
 * Subcommand: max-area
 * Description: Find the maximum area between any two heights from a list of heights. The list must be comma-separated and surrounded in double quotes (e.g., "1,2,3,4,5" "6,7,8,9").
 * Usage: `cargo run -- max-area` <HEIGHTS> where <HEIGHTS> is the list of heights.
+
+11.**Valid Parenthesis**
+* Subcommand: valid-parenthesis
+* Description: Check a string to see if it has valid open and close parenthesis. The string must be surrounded in double quotes (e.g., "{}{{(([]))}}").
+* Usage: `cargo run -- valid-parenthesis` <HEIGHTS> where <HEIGHTS> is the list of heights.
 
 ### Features
 * **Shell Completion**
