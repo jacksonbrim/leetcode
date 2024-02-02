@@ -131,6 +131,16 @@ pub fn build_cli() -> Command {
                         .value_parser(clap::value_parser!(String))
                         .help("Enter a string of open and closed brackets. (e.g. \"(){}{{}}({[[]]})\")")
                     ),
+            Command::new("generate-parenthesis")
+                .about("Generate all valid combinations of n-pairs of open and closed parenthesis.")
+                .arg(
+                    Arg::new("n-pairs")
+                        .index(1)
+                        .num_args(1)
+                        .value_parser(clap::value_parser!(i32))
+                        .help("Enter a positive integer to generate all unique combinations of n-pairs of parenthesis.")
+                    ),
+
             Command::new("generate-completions")
                 .about("Generate shell completions")
                 .arg(

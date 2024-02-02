@@ -1,6 +1,7 @@
 use crate::choose;
 use crate::cli::cli;
 use crate::cli::cli::Combinatorics;
+use crate::dynamic_programming::generate_parenthesis::Solution as GenerateParenthesis;
 use crate::generate_number_list;
 use crate::linked_list_utils::*;
 use crate::math_and_numbers::add_two_nums::Solution as AddNumsSolution;
@@ -224,6 +225,18 @@ pub fn handle_merge_two_sorted_lists(
     let linked_list2 = Some(Box::new(ListNode::from_vec(&list2)));
     let res = MergeSortedLists::merge_two_lists(linked_list1, linked_list2);
     println!("{}", res.unwrap());
+    Ok(())
+}
+pub fn handle_generate_parenthesis(matches: &ArgMatches) -> Result<(), Box<dyn std::error::Error>> {
+    let num = *matches.get_one::<i32>("n-pairs").unwrap_or(&0);
+
+    if num > 0 {
+        let res = GenerateParenthesis::generate_parenthesis(num);
+        let res_string = format!("[{}]", res.join(", "));
+
+        println!("{}", res_string);
+    }
+
     Ok(())
 }
 
