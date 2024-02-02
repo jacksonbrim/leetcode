@@ -1,43 +1,5 @@
+use crate::linked_list_utils::*;
 // Definition for singly-linked list.
-#[derive(PartialEq, Eq, Clone, Debug)]
-struct ListNode {
-    pub val: i32,
-    pub next: Option<Box<ListNode>>,
-}
-//
-impl ListNode {
-    #[inline]
-    fn new(val: i32) -> Self {
-        ListNode { next: None, val }
-    }
-    fn from_vec(vals: &Vec<i32>) -> Self {
-        if vals.len() > 1 {
-            let node: ListNode = Self {
-                val: vals[0],
-                next: Some(Box::new(Self::from_vec(&vals[1..].to_vec()))),
-            };
-            return node;
-        } else {
-            return Self::new(vals[0]);
-        }
-    }
-
-    // Reverses the list
-    pub fn reverse(mut self) -> Self {
-        let mut prev = None;
-        let mut current = Some(Box::new(self));
-
-        while let Some(mut node) = current {
-            let next = node.next.take(); // Temporarily take ownership of next node
-            node.next = prev; // Reverse the pointer
-            prev = Some(node); // Move to next node
-            current = next;
-        }
-
-        // Unwrap the reversed list and return
-        *prev.unwrap()
-    }
-}
 struct Solution;
 impl Solution {
     // 1ms, 69.35%, 2.05MB 70.16%
@@ -134,6 +96,7 @@ fn remove_nth_from_end_recr(head: Option<Box<ListNode>>, n: i32) -> (Option<Box<
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::linked_list_utils::*;
 
     #[test]
     fn from_vec_success() {

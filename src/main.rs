@@ -2,6 +2,7 @@ mod cli;
 mod data_structures;
 mod dynamic_programming;
 mod generate_test_data;
+mod linked_list_utils;
 mod logger;
 mod math_and_numbers;
 mod string_manipulation;

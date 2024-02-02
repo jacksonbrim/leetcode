@@ -2,6 +2,7 @@ use crate::choose;
 use crate::cli::cli;
 use crate::cli::cli::Combinatorics;
 use crate::generate_number_list;
+use crate::linked_list_utils::*;
 use crate::math_and_numbers::add_two_nums::Solution as AddNumsSolution;
 use crate::math_and_numbers::int_to_roman::Solution as IntToRoman;
 use crate::math_and_numbers::median_sorted_arrays::Solution as FindMedian;
@@ -34,13 +35,13 @@ pub fn handle_add_two_numbers(matches: &ArgMatches) -> Result<(), Box<dyn std::e
         .map(|c| c.to_digit(10).unwrap() as i32)
         .collect();
 
-    let linked_list1 = AddNumsSolution::create_list_from_vec(list1);
-    let linked_list2 = AddNumsSolution::create_list_from_vec(list2);
+    let linked_list1 = create_list_from_vec(list1);
+    let linked_list2 = create_list_from_vec(list2);
     let res_list = AddNumsSolution::add_two_numbers(linked_list1.clone(), linked_list2.clone());
-    let res = AddNumsSolution::list_to_int(res_list.clone());
-    let ll1_str = AddNumsSolution::format_list(linked_list1);
-    let ll2_str = AddNumsSolution::format_list(linked_list2);
-    let res_str = AddNumsSolution::format_list(res_list);
+    let res = list_to_int(res_list.clone());
+    let ll1_str = format_list(linked_list1);
+    let ll2_str = format_list(linked_list2);
+    let res_str = format_list(res_list);
 
     info!("Add Two Numbers: {} + {} == {}", ll1_str, ll2_str, res_str);
     println!("{}", res);
