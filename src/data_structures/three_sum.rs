@@ -57,7 +57,7 @@ impl Solution {
 
     // two pointers method
     // 27ms runtime, beats 94.36%, 3.92MB Memory beats 86.11%
-    pub fn three_sum(mut nums: Vec<i32>) -> Vec<Vec<i32>> {
+    pub fn three_sum(nums: Vec<i32>) -> Vec<Vec<i32>> {
         let mut nums = nums;
         nums.sort();
         let n = nums.len();

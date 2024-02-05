@@ -20,7 +20,7 @@ impl Solution {
         let mut combos: Vec<String> = vec![String::new()];
         let mut opens: Vec<i32> = vec![0];
 
-        for i in 0..n * 2 {
+        for _i in 0..n * 2 {
             for j in 0..opens.len() {
                 // check if we can add open brackets
                 let left_possible = opens[j] < n;
@@ -73,7 +73,7 @@ mod tests {
     #[test]
     fn three_parenthesis_success() {
         let n = 3;
-        let mut output = vec!["((()))", "(()())", "(())()", "()(())", "()()()"];
+        let output = vec!["((()))", "(()())", "(())()", "()(())", "()()()"];
         let mut output: Vec<String> = output
             .iter()
             .map(|s| s.to_string())
@@ -88,7 +88,7 @@ mod tests {
     #[test]
     fn one_parenthesis_success() {
         let n = 1;
-        let mut output = vec!["()"];
+        let output = vec!["()"];
         let mut output: Vec<String> = output
             .iter()
             .map(|s| s.to_string())

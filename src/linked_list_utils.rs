@@ -33,7 +33,7 @@ impl ListNode {
     pub fn new(val: i32) -> Self {
         ListNode { next: None, val }
     }
-    pub fn push_val(mut self, val: i32) {
+    pub fn push_val(self, val: i32) {
         let new_node = ListNode::new(val);
         let mut prev: Option<Box<ListNode>> = self.next;
         while prev.is_some() {
@@ -46,7 +46,7 @@ impl ListNode {
         }
     }
 
-    pub fn push_node(mut self, new_node: Option<Box<ListNode>>) {
+    pub fn push_node(self, new_node: Option<Box<ListNode>>) {
         let mut curr = self;
         while let Some(ref mut node) = curr.next {
             curr = node.as_ref().clone(); // Move ownership of the current node to avoid dangling pointers
@@ -66,7 +66,7 @@ impl ListNode {
         }
     }
     // Reverses the list
-    pub fn reverse(mut self) -> Self {
+    pub fn reverse(self) -> Self {
         let mut prev = None;
         let mut current = Some(Box::new(self));
 
@@ -97,7 +97,7 @@ pub fn reverse_linked_list(list: Option<Box<ListNode>>) -> Option<Box<ListNode>>
 }
 pub fn create_list_from_vec(vec: Vec<i32>) -> Option<Box<ListNode>> {
     let mut head = None;
-    let mut current = &mut head;
+    let current = &mut head;
 
     for &val in vec.iter().rev() {
         let mut new_node = Box::new(ListNode::new(val));

@@ -1,4 +1,4 @@
-use clap::{command, Arg, ArgAction, ArgMatches, Command};
+use clap::{Arg, ArgAction, ArgMatches, Command};
 pub enum Combinatorics {
     Choose,
     Permutation,

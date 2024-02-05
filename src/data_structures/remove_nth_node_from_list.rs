@@ -96,7 +96,7 @@ fn remove_nth_from_end_recr(head: Option<Box<ListNode>>, n: i32) -> (Option<Box<
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::linked_list_utils::*;
+    
 
     #[test]
     fn from_vec_success() {
@@ -109,7 +109,7 @@ mod tests {
             })),
         }));
 
-        let mut result = Some(Box::new(ListNode::from_vec(&input)));
+        let result = Some(Box::new(ListNode::from_vec(&input)));
         assert_eq!(result, output);
     }
     #[test]
@@ -135,7 +135,7 @@ mod tests {
         let n = 2;
         let output = vec![1, 2, 3, 5];
         let output: Option<Box<ListNode>> = Some(Box::new(ListNode::from_vec(&output)));
-        let mut result = Solution::remove_nth_from_end(input, n);
+        let result = Solution::remove_nth_from_end(input, n);
 
         assert_eq!(result, output);
     }
@@ -145,7 +145,7 @@ mod tests {
         let input = Some(Box::new(ListNode::from_vec(&input)));
         let n = 1;
         let output = None;
-        let mut result = Solution::remove_nth_from_end(input, n);
+        let result = Solution::remove_nth_from_end(input, n);
 
         assert_eq!(result, output);
     }
@@ -156,7 +156,7 @@ mod tests {
         let n = 2;
         let output = vec![2];
         let output: Option<Box<ListNode>> = Some(Box::new(ListNode::from_vec(&output)));
-        let mut result = Solution::remove_nth_from_end(input, n);
+        let result = Solution::remove_nth_from_end(input, n);
 
         assert_eq!(result, output);
     }

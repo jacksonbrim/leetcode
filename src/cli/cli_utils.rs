@@ -16,7 +16,7 @@ use crate::string_manipulation::valid_parenthesis::Solution as ValidParenthesis;
 use ::std::io;
 use clap_complete::{generate, shells::Shell};
 use num_format::{Locale, ToFormattedString};
-use std::collections::linked_list;
+
 use tracing::info;
 
 use clap::ArgMatches;
@@ -181,7 +181,7 @@ pub fn handle_valid_parenthesis(matches: &ArgMatches) -> Result<(), Box<dyn std:
     Ok(())
 }
 pub fn handle_merge_k_sorted_lists(matches: &ArgMatches) -> Result<(), Box<dyn std::error::Error>> {
-    let mut sorted_lists = matches.get_many::<String>("sorted-arrays").unwrap();
+    let sorted_lists = matches.get_many::<String>("sorted-arrays").unwrap();
     let mut lists = Vec::new();
 
     for array_str in sorted_lists {

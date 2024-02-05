@@ -61,33 +61,33 @@ mod tests {
     #[test]
     fn success1() {
         let s = "PAYPALISHIRING".to_string();
-        let numRows = 3;
+        let num_rows = 3;
         let output = "PAHNAPLSIIGYIR".to_string();
-        let res = Solution::convert(s, numRows);
+        let res = Solution::convert(s, num_rows);
         assert_eq!(res, output);
     }
     #[test]
     fn success2() {
         let s = "PAYPALISHIRING".to_string();
-        let numRows = 4;
+        let num_rows = 4;
         let output = "PINALSIGYAHRPI".to_string();
-        let res = Solution::convert(s, numRows);
+        let res = Solution::convert(s, num_rows);
         assert_eq!(res, output);
     }
     #[test]
     fn success3() {
         let s = "A".to_string();
-        let numRows = 1;
+        let num_rows = 1;
         let output = "A".to_string();
-        let res = Solution::convert(s, numRows);
+        let res = Solution::convert(s, num_rows);
         assert_eq!(res, output);
     }
     #[test]
     fn success4() {
         let s = "PAYPALISHIRINGPAYPALISHIRINGPAYPALISHIRING".to_string();
-        let numRows = 6;
+        let num_rows = 6;
         let output = "PRIYNAIILSAPIGYHNAHPARPSGPIGLIAIPYRNIHLAIS".to_string();
-        let res = Solution::convert(s, numRows);
+        let res = Solution::convert(s, num_rows);
         assert_eq!(res, output);
     }
 }
