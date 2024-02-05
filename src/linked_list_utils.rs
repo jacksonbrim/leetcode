@@ -17,23 +17,6 @@ impl Ord for ListNode {
         self.val.cmp(&other.val)
     }
 }
-
-// Wrapper type for min-heap behavior
-#[derive(Eq, PartialEq)]
-pub struct MinHeapNode(pub Box<ListNode>);
-
-impl PartialOrd for MinHeapNode {
-    fn partial_cmp(&self, other: &MinHeapNode) -> Option<Ordering> {
-        other.0.val.partial_cmp(&self.0.val)
-    }
-}
-
-impl Ord for MinHeapNode {
-    fn cmp(&self, other: &Self) -> Ordering {
-        other.0.val.cmp(&self.0.val)
-    }
-}
-
 impl fmt::Display for ListNode {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         write!(f, "[ {}", self.val)?;
