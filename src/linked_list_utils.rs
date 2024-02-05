@@ -1,10 +1,39 @@
-use std::fmt;
+use std::{cmp::Ordering, fmt};
 // Definition for singly-linked list.
-#[derive(PartialEq, Eq, Clone, Debug, PartialOrd)]
+#[derive(PartialEq, Eq, Clone, Debug)]
 pub struct ListNode {
     pub val: i32,
     pub next: Option<Box<ListNode>>,
 }
+
+impl PartialOrd for ListNode {
+    fn partial_cmp(&self, other: &ListNode) -> Option<Ordering> {
+        self.val.partial_cmp(&other.val)
+    }
+}
+
+impl Ord for ListNode {
+    fn cmp(&self, other: &Self) -> Ordering {
+        self.val.cmp(&other.val)
+    }
+}
+
+// Wrapper type for min-heap behavior
+#[derive(Eq, PartialEq)]
+pub struct MinHeapNode(pub Box<ListNode>);
+
+impl PartialOrd for MinHeapNode {
+    fn partial_cmp(&self, other: &MinHeapNode) -> Option<Ordering> {
+        other.0.val.partial_cmp(&self.0.val)
+    }
+}
+
+impl Ord for MinHeapNode {
+    fn cmp(&self, other: &Self) -> Ordering {
+        other.0.val.cmp(&self.0.val)
+    }
+}
+
 impl fmt::Display for ListNode {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         write!(f, "[ {}", self.val)?;

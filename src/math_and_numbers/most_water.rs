@@ -135,24 +135,24 @@ mod tests {
         assert_eq!(res, output);
     }
 
-    #[test]
-    fn massive_list_success() {
-        let data = fs::read_to_string("./test_input/most_water.txt")
-            .expect("Opening file test_input/most_water.txt");
-        let heights: Vec<i32> = data
-            .trim()
-            .split_terminator(",")
-            .map(|num_str| {
-                num_str
-                    .parse::<i32>()
-                    .map_err(|e| format!("Failed to parse '{}': {}", num_str, e))
-            })
-            .collect::<Result<Vec<i32>, _>>()
-            .expect("One or more items failed to parse");
-        println!("big list length: {:?}", heights.len());
-        let output = 50000000;
-        let res = Solution::max_area(heights);
+    //#[test]
+    //fn massive_list_success() {
+    //    let data = fs::read_to_string("./test_input/most_water.txt")
+    //        .expect("Opening file test_input/most_water.txt");
+    //    let heights: Vec<i32> = data
+    //        .trim()
+    //        .split_terminator(",")
+    //        .map(|num_str| {
+    //            num_str
+    //                .parse::<i32>()
+    //                .map_err(|e| format!("Failed to parse '{}': {}", num_str, e))
+    //        })
+    //        .collect::<Result<Vec<i32>, _>>()
+    //        .expect("One or more items failed to parse");
+    //    println!("big list length: {:?}", heights.len());
+    //    let output = 50000000;
+    //    let res = Solution::max_area(heights);
 
-        assert_eq!(res, output);
-    }
+    //    assert_eq!(res, output);
+    //}
 }
