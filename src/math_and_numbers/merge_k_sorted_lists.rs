@@ -1,5 +1,5 @@
 use crate::linked_list_utils::*;
-use merge_two_lists::Solution as MergeTwoSolution;
+use crate::math_and_numbers::merge_two_sorted_lists::Solution as MergeTwoSolution;
 use std::cmp::Reverse;
 use std::collections::BinaryHeap;
 
@@ -8,7 +8,7 @@ impl Solution {
     // binary heap implementation
     // Reverse struct
     pub fn merge_k_lists(lists: Vec<Option<Box<ListNode>>>) -> Option<Box<ListNode>> {
-        let mut heap: BinaryHeap<Reverse> = BinaryHeap::with_capacity(lists.len());
+        let mut heap = BinaryHeap::with_capacity(lists.len());
 
         // Push Reverse objects into the heap
         for list in lists {

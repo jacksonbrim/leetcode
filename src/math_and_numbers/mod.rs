@@ -1,6 +1,7 @@
 pub mod add_two_nums;
 pub mod int_to_roman;
 pub mod median_sorted_arrays;
+pub mod merge_k_sorted_lists;
 pub mod merge_two_sorted_lists;
 pub mod most_water;
 pub mod palindrome_number;

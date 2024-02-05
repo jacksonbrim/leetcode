@@ -112,7 +112,17 @@ pub fn build_cli() -> Command {
                     .value_parser(clap::value_parser!(String))
                     .help("Merge two sorted arrays into a single sorted array. Arrays must comma separated and surrounded in double quotes. (e.g. \"1,2,3,4,5\" \"6,7,8,9\""),
                 ),
-
+            Command::new("merge-k-sorted-arrays")
+                .about("Merge k sorted lists into a single sorted lists.")
+                .long_about("Takes k sorted arrays and converts them into linked lists. Then it merges them into a single linked list.")
+                .arg(
+                    Arg::new("sorted-arrays")
+                    .index(1)
+                    .required(true)
+                    .action(ArgAction::Append)
+                    .value_parser(clap::value_parser!(String))
+                    .help("Merge k sorted arrays into a single sorted array. Arrays must comma separated and surrounded in double quotes. (e.g. \"1,2,3,4,5\" \"6,7,8,9\""),
+                ),
             Command::new("max-area")
                 .about("Find the maximum area between any two heights from a list of heights. List must comma separated and surrounded in double quotes. (e.g. \"1,2,3,4,5\" \"6,7,8,9\"")
                 .arg(

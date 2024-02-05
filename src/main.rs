@@ -8,10 +8,7 @@ mod math_and_numbers;
 mod string_manipulation;
 use crate::dynamic_programming::combinatorics::*;
 use crate::logger::setup_logging;
-use clap::{arg, command, Arg, ArgAction, ArgMatches, Command, Error};
 use generate_test_data::generate_number_list;
-use num_format::{Locale, ToFormattedString};
-use tracing::{info, level_filters::LevelFilter, Level};
 
 use crate::cli::cli::{
     parse_args,
@@ -46,7 +43,9 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         Some(("merge-two-sorted-arrays", sub_m)) => {
             cli_utils::handle_merge_two_sorted_lists(sub_m)?;
         }
-
+        Some(("merge-k-sorted-arrays", sub_m)) => {
+            cli_utils::handle_merge_k_sorted_lists(sub_m)?;
+        }
         Some(("most-water", sub_m)) => {
             cli_utils::handle_most_water(sub_m)?;
         }

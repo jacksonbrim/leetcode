@@ -9,7 +9,10 @@ impl Solution {
         Self::dfs(list1, list2)
     }
     // depth first search
-    fn dfs(list1: Option<Box<ListNode>>, list2: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
+    pub fn dfs(
+        list1: Option<Box<ListNode>>,
+        list2: Option<Box<ListNode>>,
+    ) -> Option<Box<ListNode>> {
         match (list1, list2) {
             (Some(node1), Some(node2)) => match node1.val <= node2.val {
                 true => {

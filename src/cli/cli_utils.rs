@@ -7,6 +7,7 @@ use crate::linked_list_utils::*;
 use crate::math_and_numbers::add_two_nums::Solution as AddNumsSolution;
 use crate::math_and_numbers::int_to_roman::Solution as IntToRoman;
 use crate::math_and_numbers::median_sorted_arrays::Solution as FindMedian;
+use crate::math_and_numbers::merge_k_sorted_lists::Solution as MergeKSortedLists;
 use crate::math_and_numbers::merge_two_sorted_lists::Solution as MergeSortedLists;
 use crate::math_and_numbers::most_water::Solution as MostWater;
 use crate::permutation;
@@ -179,6 +180,37 @@ pub fn handle_valid_parenthesis(matches: &ArgMatches) -> Result<(), Box<dyn std:
     println!("{}", res);
     Ok(())
 }
+pub fn handle_merge_k_sorted_lists(matches: &ArgMatches) -> Result<(), Box<dyn std::error::Error>> {
+    let mut sorted_lists = matches.get_many::<String>("sorted-arrays").unwrap();
+    let mut lists = Vec::new();
+
+    for array_str in sorted_lists {
+        let list: Vec<i32> = array_str
+            .split(',')
+            .filter_map(|c| c.trim().parse::<i32>().ok())
+            .collect();
+
+        let linked_list = ListNode::from_vec(&list);
+        lists.push(Some(Box::new(linked_list)));
+    }
+
+    // Log the sorted arrays if needed
+    for (i, list) in lists.iter().enumerate() {
+        info!(
+            "arr{} converted to linked list: {}",
+            i + 1,
+            list.as_ref().unwrap()
+        );
+    }
+
+    let res = MergeKSortedLists::merge_k_lists(lists);
+    match res {
+        Some(list) => println!("{}", list),
+        None => println!("Merged list is empty"),
+    }
+    Ok(())
+}
+
 pub fn handle_merge_two_sorted_lists(
     matches: &ArgMatches,
 ) -> Result<(), Box<dyn std::error::Error>> {
